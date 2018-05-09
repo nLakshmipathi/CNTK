@@ -248,7 +248,7 @@ namespace CNTK
         {
             // Write raw bytes.
             auto size = src.Shape().TotalSize();
-            const char* buffer = src.DataBuffer<char>();
+            const int8_t* buffer = src.DataBuffer<int8_t>();
             output.WriteRaw(buffer, size);
         }
 
