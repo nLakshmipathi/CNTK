@@ -248,7 +248,7 @@ namespace CNTK
         {
             // Write raw bytes.
             auto size = src.Shape().TotalSize();
-            const char* buffer = src.DataBuffer<char>();
+            const int8_t* buffer = src.DataBuffer<int8_t>();
             output.WriteRaw(buffer, size);
         }
 
@@ -373,8 +373,8 @@ namespace CNTK
             {
                 // Directly copy the data as a byte array.
                 auto size = src.Shape().TotalSize();
-                const char* buffer = src.DataBuffer<char>();
-                dst->mutable_bytes_value()->set_value(buffer,size);
+                const int8_t* buffer = src.DataBuffer<int8_t>();
+                dst->mutable_bytes_value()->set_value(buffer, size);
             }
         }
     }
