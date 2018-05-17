@@ -35,11 +35,10 @@ BlockRandomizer::BlockRandomizer(
       m_chunkRandomizer(std::make_shared<ChunkRandomizer>(deserializer, randomizationRange, sampleBasedRandomizationWindow)),
       m_multithreadedGetNextSequences(multithreadedGetNextSequence),
       m_prefetchedChunk(ChunkIdMax),
-      m_cleaner(maxNumberOfInvalidSequences),
+      m_cleaner(std::max(maxNumberOfInvalidSequences, m_config.m_maxErrors)),
       m_seedOffset(seedOffset)
 {
     assert(deserializer != nullptr);
-
     m_launchType = shouldPrefetch ? launch::async : launch::deferred;
 
     m_streams = m_deserializer->StreamInfos();

@@ -20,7 +20,7 @@ namespace CNTK {
       m_sweepSizeInSamples(0),
       m_currentSequencePositionInChunk(0),
       m_multithreadedGetNextSequences(multithreadedGetNextSequences),
-      m_cleaner(maxNumberOfInvalidSequences)
+      m_cleaner(std::max(maxNumberOfInvalidSequences, m_config.m_maxErrors))
 {
     assert(deserializer != nullptr);
     m_streams = m_deserializer->StreamInfos();

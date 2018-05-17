@@ -21,7 +21,7 @@ LocalTimelineRandomizerBase::LocalTimelineRandomizerBase(
     size_t maxNumberOfInvalidSequences)
 : m_deserializer(deserializer),
   m_multithreadedGetNextSequences(multithreadedGetNextSequences),
-  m_cleaner(maxNumberOfInvalidSequences),
+  m_cleaner(std::max(maxNumberOfInvalidSequences, m_config.m_maxErrors)),
   m_sweepCount(0),
   m_sampleCount(0),
   m_originalChunkDescriptions(deserializer->ChunkInfos()),
